@@ -1,0 +1,1009 @@
+0. 
+
+SQL> SELECT BANNER_FULL FROM V$VERSION;
+
+BANNER_FULL
+--------------------------------------------------------------------------------
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+SQL> SELECT SYS_CONTEXT('USERENV','CON_NAME') AS contenedor,
+  2         SYS_CONTEXT('USERENV','SESSION_USER') AS usuario,
+  3         TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS fecha
+  4  FROM DUAL;
+
+CONTENEDOR
+--------------------------------------------------------------------------------
+USUARIO
+--------------------------------------------------------------------------------
+FECHA
+-------------------
+XEPDB1
+SYS
+2026-10-27 13:33:13
+
+
+SQL> SELECT PARAMETER, VALUE FROM V$OPTION ORDER BY PARAMETER;
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Active Data Guard
+FALSE
+
+Adaptive Execution Plans
+TRUE
+
+Advanced Analytics
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Advanced Compression
+TRUE
+
+Advanced Index Compression
+TRUE
+
+Advanced replication
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Application Role
+TRUE
+
+ASM Proxy Instance
+FALSE
+
+Automatic Data Optimization
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Automatic Storage Management
+FALSE
+
+Backup Encryption
+TRUE
+
+Basic Compression
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Bit-mapped indexes
+TRUE
+
+Block Change Tracking
+TRUE
+
+Block Media Recovery
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Cache Fusion Lock Accelerator
+FALSE
+
+Centrally Managed User
+TRUE
+
+Change Data Capture
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Coalesce Index
+TRUE
+
+Connection multiplexing
+TRUE
+
+Connection pooling
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Cross Transportable Backups
+TRUE
+
+Data Guard for Pluggable Databases
+FALSE
+
+Data Mining
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Data Redaction
+TRUE
+
+Database queuing
+TRUE
+
+Database resource manager
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Deferred Segment Creation
+TRUE
+
+DICOM
+TRUE
+
+Duplexed backups
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Enterprise User Security
+FALSE
+
+Exadata Discovery
+FALSE
+
+Export transportable tablespaces
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Fast-Start Fault Recovery
+TRUE
+
+File Mapping
+TRUE
+
+Fine-grained access control
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Fine-grained Auditing
+TRUE
+
+Flashback Data Archive
+TRUE
+
+Flashback Database
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Flashback Table
+TRUE
+
+Global Data Services
+FALSE
+
+Heat Map
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Incremental backup and recovery
+TRUE
+
+In-Memory Aggregation
+TRUE
+
+In-Memory Column Store
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Instead-of triggers
+TRUE
+
+I/O Server
+FALSE
+
+Java
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Join index
+TRUE
+
+Managed Standby
+FALSE
+
+Management Database
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Materialized view rewrite
+TRUE
+
+Objects
+TRUE
+
+OLAP
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+OLAP Window Functions
+TRUE
+
+Online Index Build
+TRUE
+
+Online Redefinition
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Oracle Data Guard
+FALSE
+
+Oracle Database Vault
+FALSE
+
+Oracle Label Security
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Parallel backup and recovery
+FALSE
+
+Parallel execution
+FALSE
+
+Parallel load
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Partitioning
+TRUE
+
+Plan Stability
+TRUE
+
+Point-in-time tablespace recovery
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Privilege Analysis
+TRUE
+
+Proxy authentication/authorization
+TRUE
+
+Real Application Clusters
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Real Application Security
+TRUE
+
+Real Application Testing
+FALSE
+
+Result Cache
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Sample Scan
+TRUE
+
+SecureFiles Encryption
+TRUE
+
+Server Flash Cache
+FALSE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Snapshot time recovery
+TRUE
+
+Spatial
+TRUE
+
+SQL Plan Management
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Streams Capture
+FALSE
+
+Table Clustering
+TRUE
+
+Transparent Application Failover
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Transparent Data Encryption
+TRUE
+
+Transparent Sensitive Data Protection
+TRUE
+
+Trial Recovery
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Unified Auditing
+FALSE
+
+Unused Block Compression
+TRUE
+
+XStream
+TRUE
+
+
+PARAMETER
+----------------------------------------------------------------
+VALUE
+----------------------------------------------------------------
+Zone Maps
+TRUE
+
+
+88 filas seleccionadas.
+
+1. 
+
+SQL> SELECT GRANTEE, GRANTED_ROLE, ADMIN_OPTION FROM DBA_ROLE_PRIVS WHERE GRANTED_ROLE = 'DBA';
+
+GRANTEE
+--------------------------------------------------------------------------------
+GRA ADM
+--- ---
+SYS
+DBA YES
+
+SYSTEM
+DBA NO
+
+
+SQL> SELECT * FROM V$PWFILE_USERS;
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+SYS
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+TRUE  TRUE  FALSE FALSE FALSE FALSE OPEN
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+PASSWORD YES 11G 12C               0
+
+USERNAME
+--------------------------------------------------------------------------------
+SYSDB SYSOP SYSAS SYSBA SYSDG SYSKM ACCOUNT_STATUS
+----- ----- ----- ----- ----- ----- ------------------------------
+PASSWORD_PROFILE
+--------------------------------------------------------------------------------
+LAST_LOGIN
+---------------------------------------------------------------------------
+LOCK_DAT EXPIRY_D
+-------- --------
+EXTERNAL_NAME
+--------------------------------------------------------------------------------
+AUTHENTI COM PASSWORD_VER     CON_ID
+-------- --- ------------ ----------
+
+2.
+
+SQL> SELECT GRANTEE, PRIVILEGE, ADMIN_OPTION FROM DBA_SYS_PRIVS
+  2  WHERE PRIVILEGE LIKE '%ANY%'
+  3    AND GRANTEE IN (SELECT USERNAME FROM DBA_USERS WHERE ORACLE_MAINTAINED = 'N')
+  4  ORDER BY GRANTEE, PRIVILEGE;
+
+ninguna fila seleccionada
+
+3.
+
+SQL> SELECT * FROM DBA_USERS_WITH_DEFPWD;
+
+ninguna fila seleccionada
+
+4.
+
+SQL> SELECT USERNAME, ACCOUNT_STATUS, PROFILE, LAST_LOGIN, ORACLE_MAINTAINED
+  2  FROM DBA_USERS ORDER BY ORACLE_MAINTAINED, USERNAME;
+
+USERNAME                  ACCOUNT_STATUS                   PROFILE              LAST_LOGIN                                 O
+------------------------- -------------------------------- -------------------- --------------------------------------------------------------------------- -
+PDBADMIN                  OPEN                             DEFAULT                                                         N
+ANONYMOUS                 LOCKED                           DEFAULT                                                         Y
+APPQOSSYS                 LOCKED                           DEFAULT                                                         Y
+AUDSYS                    LOCKED                           DEFAULT                                                         Y
+CTXSYS                    LOCKED                           DEFAULT                                                         Y
+DBSFWUSER                 LOCKED                           DEFAULT                                                         Y
+DBSNMP                    LOCKED                           DEFAULT                                                         Y
+DGPDB_INT                 LOCKED                           DEFAULT                                                         Y
+DIP                       LOCKED                           DEFAULT                                                         Y
+DVF                       LOCKED                           DEFAULT                                                         Y
+DVSYS                     LOCKED                           DEFAULT                                                         Y
+GGSYS                     LOCKED                           DEFAULT                                                         Y
+GSMADMIN_INTERNAL         LOCKED                           DEFAULT                                                         Y
+GSMCATUSER                LOCKED                           DEFAULT                                                         Y
+GSMUSER                   LOCKED                           DEFAULT                                                         Y
+LBACSYS                   LOCKED                           DEFAULT                                                         Y
+MDDATA                    LOCKED                           DEFAULT                                                         Y
+MDSYS                     LOCKED                           DEFAULT                                                         Y
+OJVMSYS                   LOCKED                           DEFAULT                                                         Y
+OLAPSYS                   LOCKED                           DEFAULT                                                         Y
+ORACLE_OCM                LOCKED                           DEFAULT                                                         Y
+ORDDATA                   LOCKED                           DEFAULT                                                         Y
+ORDPLUGINS                LOCKED                           DEFAULT                                                         Y
+ORDSYS                    LOCKED                           DEFAULT                                                         Y
+OUTLN                     LOCKED                           DEFAULT                                                         Y
+REMOTE_SCHEDULER_AGENT    LOCKED                           DEFAULT                                                         Y
+SI_INFORMTN_SCHEMA        LOCKED                           DEFAULT                                                         Y
+SYS                       OPEN                             DEFAULT                                                         Y
+SYSBACKUP                 LOCKED                           DEFAULT                                                         Y
+SYSDG                     LOCKED                           DEFAULT                                                         Y
+SYSKM                     LOCKED                           DEFAULT                                                         Y
+SYSRAC                    OPEN                             DEFAULT                                                         Y
+SYSTEM                    OPEN                             DEFAULT                                                         Y
+SYS$UMF                   LOCKED                           DEFAULT                                                         Y
+WMSYS                     LOCKED                           DEFAULT                                                         Y
+XDB                       LOCKED                           DEFAULT                                                         Y
+XS$NULL                   LOCKED                           DEFAULT                                                         Y
+
+37 filas seleccionadas.
+
+5.
+
+SQL> SELECT PROFILE, RESOURCE_NAME, LIMIT FROM DBA_PROFILES
+  2  WHERE RESOURCE_TYPE = 'PASSWORD' ORDER BY PROFILE, RESOURCE_NAME;
+
+PROFILE              RESOURCE_NAME                  LIMIT
+-------------------- ------------------------------ ------------------------------
+DEFAULT              FAILED_LOGIN_ATTEMPTS          10
+DEFAULT              INACTIVE_ACCOUNT_TIME          365
+DEFAULT              PASSWORD_GRACE_TIME            7
+DEFAULT              PASSWORD_LIFE_TIME             180
+DEFAULT              PASSWORD_LOCK_TIME             1
+DEFAULT              PASSWORD_REUSE_MAX             UNLIMITED
+DEFAULT              PASSWORD_REUSE_TIME            UNLIMITED
+DEFAULT              PASSWORD_ROLLOVER_TIME         0
+DEFAULT              PASSWORD_VERIFY_FUNCTION       NULL
+ORA_CIS_PROFILE      FAILED_LOGIN_ATTEMPTS          5
+ORA_CIS_PROFILE      INACTIVE_ACCOUNT_TIME          120
+ORA_CIS_PROFILE      PASSWORD_GRACE_TIME            5
+ORA_CIS_PROFILE      PASSWORD_LIFE_TIME             90
+ORA_CIS_PROFILE      PASSWORD_LOCK_TIME             1
+ORA_CIS_PROFILE      PASSWORD_REUSE_MAX             20
+ORA_CIS_PROFILE      PASSWORD_REUSE_TIME            365
+ORA_CIS_PROFILE      PASSWORD_ROLLOVER_TIME         DEFAULT
+ORA_CIS_PROFILE      PASSWORD_VERIFY_FUNCTION       ORA12C_VERIFY_FUNCTION
+ORA_STIG_PROFILE     FAILED_LOGIN_ATTEMPTS          3
+ORA_STIG_PROFILE     INACTIVE_ACCOUNT_TIME          35
+ORA_STIG_PROFILE     PASSWORD_GRACE_TIME            0
+ORA_STIG_PROFILE     PASSWORD_LIFE_TIME             35
+ORA_STIG_PROFILE     PASSWORD_LOCK_TIME             UNLIMITED
+ORA_STIG_PROFILE     PASSWORD_REUSE_MAX             5
+ORA_STIG_PROFILE     PASSWORD_REUSE_TIME            175
+ORA_STIG_PROFILE     PASSWORD_ROLLOVER_TIME         DEFAULT
+ORA_STIG_PROFILE     PASSWORD_VERIFY_FUNCTION       ORA12C_STIG_VERIFY_FUNCTION
+
+27 filas seleccionadas.
+
+6.
+
+SQL> SELECT GRANTEE, OWNER, TABLE_NAME, PRIVILEGE FROM DBA_TAB_PRIVS
+  2  WHERE GRANTEE = 'PUBLIC'
+  3    AND TABLE_NAME IN ('UTL_FILE','UTL_HTTP','UTL_SMTP','UTL_TCP');
+
+GRANTEE                   OWNER                TABLE_NAME                PRIVILEGE
+------------------------- -------------------- ------------------------- -----------------------------------
+PUBLIC                    SYS                  UTL_TCP                   EXECUTE
+PUBLIC                    SYS                  UTL_HTTP                  EXECUTE
+PUBLIC                    SYS                  UTL_FILE                  EXECUTE
+PUBLIC                    SYS                  UTL_SMTP                  EXECUTE
+
+4 filas seleccionadas.
+
+SQL> SELECT * FROM DBA_DIRECTORIES;
+
+OWNER                DIRECTORY_NAME
+-------------------- --------------------------------------------------------------------------------------------------------------------------------
+DIRECTORY_PATH
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ORIGIN_CON_ID
+-------------
+SYS                  ORACLECLRDIR
+C:\app\ESCINF\product\21c\dbhomeXE\bin\clr
+            1
+
+SYS                  SDO_DIR_ADMIN
+C:\app\ESCINF\product\21c\dbhomeXE/md/admin
+            1
+
+SYS                  XMLDIR
+C:\app\ESCINF\product\21c\dbhomeXE\rdbms\xml
+            1
+
+SYS                  XSDDIR
+C:\app\ESCINF\product\21c\dbhomeXE\rdbms\xml\schema
+            1
+
+SYS                  ORACLE_OCM_CONFIG_DIR2
+C:\app\ESCINF\product\21c\homes\OraDB21Home1\ccr\state
+            1
+
+SYS                  ORACLE_OCM_CONFIG_DIR
+C:\app\ESCINF\product\21c\homes\OraDB21Home1\ccr\state
+            1
+
+SYS                  ORACLE_BASE
+C:\app\ESCINF\product\21c
+            1
+
+SYS                  ORACLE_HOME
+C:\app\ESCINF\product\21c\dbhomeXE
+            1
+
+SYS                  OPATCH_INST_DIR
+C:\app\ESCINF\product\21c\dbhomeXE\OPatch
+            1
+
+SYS                  DATA_PUMP_DIR
+C:\app\ESCINF\product\21c\admin\xe\dpdump/98B9073CBB064C479B6B45CA2B4BE570
+            1
+
+SYS                  DBMS_OPTIM_LOGDIR
+C:\app\ESCINF\product\21c\dbhomeXE/cfgtoollogs
+            1
+
+SYS                  DBMS_OPTIM_ADMINDIR
+C:\app\ESCINF\product\21c\dbhomeXE/rdbms/admin
+            1
+
+SYS                  OPATCH_SCRIPT_DIR
+C:\app\ESCINF\product\21c\dbhomeXE\QOpatch
+            1
+
+SYS                  OPATCH_LOG_DIR
+C:\app\ESCINF\product\21c\homes\OraDB21Home1\rdbms\log
+            1
+
+SYS                  JAVA$JOX$CUJS$DIRECTORY$
+C:\APP\ESCINF\PRODUCT\21C\DBHOMEXE\JAVAVM\ADMIN\
+            1
+
+
+15 filas seleccionadas.
+
+7.
+
+SQL> SELECT GRANTEE, GRANTED_ROLE FROM DBA_ROLE_PRIVS
+  2  WHERE GRANTEE IN (SELECT USERNAME FROM DBA_USERS WHERE ORACLE_MAINTAINED = 'N')
+  3  ORDER BY GRANTEE;
+
+GRANTEE                   GRANTED_ROLE
+------------------------- -------------------------
+PDBADMIN                  PDB_DBA
+
+1 fila seleccionada.
+
+8.
+
+SQL> SELECT OWNER, TABLE_NAME, COLUMN_NAME, COMMENTS FROM DBA_COL_COMMENTS
+  2  WHERE COMMENTS IS NOT NULL
+  3    AND OWNER IN (SELECT USERNAME FROM DBA_USERS WHERE ORACLE_MAINTAINED = 'N');
+
+ninguna fila seleccionada
+
+9.
+
+SQL> SELECT * FROM DBA_POLICIES;
+
+OBJECT_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+POLICY_GROUP
+--------------------------------------------------------------------------------------------------------------------------------
+POLICY_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+PF_OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+PACKAGE
+--------------------------------------------------------------------------------------------------------------------------------
+FUNCTION                                                                                                                SEL INS UPD DEL IDX CHK ENA STA POLICY_TYPE               LON COM INH
+-------------------------------------------------------------------------------------------------------------------------------- --- --- --- --- --- --- --- --- ------------------------ --- --- ---
+XDB
+XDB$ACL
+SYS_DEFAULT
+XDB$ACL$xd_sp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_SELECTPF                                                                                                   YES NO  NO  NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$ACL
+SYS_DEFAULT
+XDB$ACL$xd_up
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_UPDATEPF                                                                                                   NO  NO  YES NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$ACL
+SYS_DEFAULT
+XDB$ACL$xd_dp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_DELETEPF                                                                                                   NO  NO  NO  YES NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$RESCONFIG
+SYS_DEFAULT
+XDB$RESCONFIG$xd_sp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_SELECTPF                                                                                                   YES NO  NO  NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$RESCONFIG
+SYS_DEFAULT
+XDB$RESCONFIG$xd_up
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_UPDATEPF                                                                                                   NO  NO  YES NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$RESCONFIG
+SYS_DEFAULT
+XDB$RESCONFIG$xd_dp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_DELETEPF                                                                                                   NO  NO  NO  YES NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$STATS
+SYS_DEFAULT
+XDB$STATS$xd_sp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_SELECTPF                                                                                                   YES NO  NO  NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$STATS
+SYS_DEFAULT
+XDB$STATS$xd_up
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_UPDATEPF                                                                                                   NO  NO  YES NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$STATS
+SYS_DEFAULT
+XDB$STATS$xd_dp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_DELETEPF                                                                                                   NO  NO  NO  YES NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$CONFIG
+SYS_DEFAULT
+XDB$CONFIG$xd_sp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_SELECTPF                                                                                                   YES NO  NO  NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$CONFIG
+SYS_DEFAULT
+XDB$CONFIG$xd_up
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_UPDATEPF                                                                                                   NO  NO  YES NO  NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+XDB
+XDB$CONFIG
+SYS_DEFAULT
+XDB$CONFIG$xd_dp
+XDB
+DBMS_XDBZ0
+CHECKPRIVRLS_DELETEPF                                                                                                   NO  NO  NO  YES NO  NO  YES NO  DYNAMIC           NO  NO  NO
+
+
+12 filas seleccionadas.
+
+10.
+
+SQL> SELECT * FROM V$ENCRYPTION_WALLET;
+
+WRL_TYPE
+--------------------
+WRL_PARAMETER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STATUS                         WALLET_TYPE          WALLET_OR KEYSTORE FULLY_BAC     CON_ID
+------------------------------ -------------------- --------- -------- --------- ----------
+FILE
+
+NOT_AVAILABLE                  UNKNOWN              SINGLE    UNITED   UNDEFINED          3
+
+
+1 fila seleccionada.
+
+SQL> SELECT * FROM V$ENCRYPTED_TABLESPACES;
+
+ninguna fila seleccionada
+
+SQL> SELECT * FROM DBA_ENCRYPTED_COLUMNS;
+
+ninguna fila seleccionada.
+
+11.
+
+SQL> SELECT RECID, BACKUP_TYPE, ENCRYPTED, COMPLETION_TIME FROM V$BACKUP_SET;
+SELECT RECID, BACKUP_TYPE, ENCRYPTED, COMPLETION_TIME FROM V$BACKUP_SET
+                           *
+ERROR en lÝnea 1:
+ORA-00904: "ENCRYPTED": identificador no vßlido.
+
+12.
+
+SQL> SELECT * FROM REDACTION_POLICIES;
+
+ninguna fila seleccionada
+
+13.
+
+SQL> SELECT PARAMETER, VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';
+
+PARAMETER                                     VALUE
+--------------------------------------------- --------------------
+Unified Auditing                              FALSE
+
+1 fila seleccionada.
+
+SQL> SELECT * FROM AUDIT_UNIFIED_ENABLED_POLICIES;
+
+POLICY_NAME                                                                                                             ENABLED_OPTION
+-------------------------------------------------------------------------------------------------------------------------------- ---------------
+ENTITY_NAME                                                                                                             ENTITY_ SUC FAI
+-------------------------------------------------------------------------------------------------------------------------------- ------- --- ---
+ORA_SECURECONFIG                                                                                                        BY USER
+ALL USERS                                                                                                               USER     YES YES
+
+ORA_LOGON_FAILURES                                                                                                      BY USER
+ALL USERS                                                                                                               USER     NO  YES
+
+
+2 filas seleccionadas.
+
+SQL> SELECT GRANTEE, GRANTED_ROLE FROM DBA_ROLE_PRIVS
+  2  WHERE GRANTED_ROLE IN ('AUDIT_ADMIN','AUDIT_VIEWER');
+
+GRANTEE                   GRANTED_ROLE
+------------------------- -------------------------
+SYS                       AUDIT_ADMIN
+SYS                       AUDIT_VIEWER
+
+2 filas seleccionadas.
+
+14.
+
+SQL> SELECT OWNER, OBJECT_NAME, ORIGINAL_NAME, DROPTIME FROM DBA_RECYCLEBIN;
+
+ninguna fila seleccionada
+
+15.
+
+SQL> SELECT NETWORK_SERVICE_BANNER FROM V$SESSION_CONNECT_INFO
+  2  WHERE SID = SYS_CONTEXT('USERENV','SID');
+
+NETWORK_SERVICE_BANNER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle Bequeath NT Protocol Adapter for 64-bit Windows: Version 21.0.0.0.0 - Production
+Authentication service for 64-bit Windows: Version 21.0.1.0.0 - Production
+NTS Authentication service adapter for 64-bit Windows: Version 2.0.0.0.0 - Production
+Encryption service for 64-bit Windows: Version 21.0.1.0.0 - Production
+Crypto-checksumming service for 64-bit Windows: Version 21.0.1.0.0 - Production
+
+5 filas seleccionadas.
+
+SQL> SELECT PATCH_ID, ACTION, STATUS, ACTION_TIME, DESCRIPTION FROM DBA_REGISTRY_SQLPATCH
+  2  ORDER BY ACTION_TIME DESC;
+
+ninguna fila seleccionada

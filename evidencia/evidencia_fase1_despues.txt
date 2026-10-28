@@ -1,0 +1,139 @@
+SQL> 
+SQL> PROMPT ===== CONTEXTO =====
+===== CONTEXTO =====
+SQL> SELECT SYS_CONTEXT('USERENV','CON_NAME') AS contenedor,
+  2         SYS_CONTEXT('USERENV','SESSION_USER') AS usuario,
+  3         TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS fecha
+  4  FROM DUAL;
+
+CONTENEDOR
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USUARIO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FECHA
+-------------------
+XEPDB1
+SYS
+2026-10-27 13:51:07
+
+
+1 fila seleccionada.
+
+SQL> 
+SQL> -- ------------------------------------------------------------
+SQL> -- MEJORA 1 (T03, A5.17 / A8.5): perfil de contrasenas propio
+SQL> -- ------------------------------------------------------------
+SQL> CREATE PROFILE PERFIL_CONF LIMIT
+  2    FAILED_LOGIN_ATTEMPTS    5
+  3    PASSWORD_LOCK_TIME       1/24
+  4    PASSWORD_LIFE_TIME       90
+  5    PASSWORD_GRACE_TIME      7
+  6    PASSWORD_REUSE_MAX       10
+  7    PASSWORD_REUSE_TIME      365
+  8    INACTIVE_ACCOUNT_TIME    120
+  9    PASSWORD_VERIFY_FUNCTION ORA12C_VERIFY_FUNCTION;
+
+Perfil creado.
+
+SQL> 
+SQL> ALTER USER PDBADMIN PROFILE PERFIL_CONF;
+
+Usuario modificado.
+
+SQL> ALTER USER SYSTEM   PROFILE PERFIL_CONF;
+
+Usuario modificado.
+
+SQL> 
+SQL> -- ------------------------------------------------------------
+SQL> -- MEJORA 2 (T12 / T06, A5.15 / A8.12): quitar EXECUTE a PUBLIC
+SQL> -- sobre paquetes que pueden sacar datos fuera de la base
+SQL> -- ------------------------------------------------------------
+SQL> REVOKE EXECUTE ON SYS.UTL_FILE FROM PUBLIC;
+
+Revocaci�n terminada correctamente.
+
+SQL> REVOKE EXECUTE ON SYS.UTL_HTTP FROM PUBLIC;
+
+Revocaci�n terminada correctamente.
+
+SQL> REVOKE EXECUTE ON SYS.UTL_SMTP FROM PUBLIC;
+
+Revocaci�n terminada correctamente.
+
+SQL> REVOKE EXECUTE ON SYS.UTL_TCP  FROM PUBLIC;
+
+Revocaci�n terminada correctamente.
+
+SQL> 
+SQL> -- ------------------------------------------------------------
+SQL> -- MEJORA 3 (T01, A5.16): bloquear cuenta sin uso
+SQL> -- Si da ORA-65066, ejecutar desde la raiz:
+SQL> --   ALTER SESSION SET CONTAINER = CDB$ROOT;
+SQL> --   ALTER USER SYSRAC ACCOUNT LOCK CONTAINER = ALL;
+SQL> --   ALTER SESSION SET CONTAINER = XEPDB1;
+SQL> -- ------------------------------------------------------------
+SQL> ALTER USER SYSRAC ACCOUNT LOCK;
+ALTER USER SYSRAC ACCOUNT LOCK
+*
+ERROR en l�nea 1:
+ORA-28222: no se puede modificar el usuario reservado
+
+
+SQL> 
+SQL> -- ============================================================
+SQL> -- VERIFICACION (repite OBS-03, OBS-04, OBS-05 y OBS-06)
+SQL> -- ============================================================
+SQL> PROMPT ===== OBS-03. Cuentas con contrasena por defecto =====
+===== OBS-03. Cuentas con contrasena por defecto =====
+SQL> SELECT * FROM DBA_USERS_WITH_DEFPWD;
+
+ninguna fila seleccionada
+
+SQL> 
+SQL> PROMPT ===== OBS-04. Estado de cuentas abiertas =====
+===== OBS-04. Estado de cuentas abiertas =====
+SQL> SELECT USERNAME, ACCOUNT_STATUS, PROFILE FROM DBA_USERS
+  2  WHERE ACCOUNT_STATUS = 'OPEN' ORDER BY USERNAME;
+
+USERNAME                  ACCOUNT_STATUS                   PROFILE
+------------------------- -------------------------------- --------------------
+PDBADMIN                  OPEN                             PERFIL_CONF
+SYS                       OPEN                             DEFAULT
+SYSRAC                    OPEN                             DEFAULT
+SYSTEM                    OPEN                             PERFIL_CONF
+
+4 filas seleccionadas.
+
+SQL> 
+SQL> PROMPT ===== OBS-05. Perfil PERFIL_CONF =====
+===== OBS-05. Perfil PERFIL_CONF =====
+SQL> SELECT PROFILE, RESOURCE_NAME, LIMIT FROM DBA_PROFILES
+  2  WHERE PROFILE = 'PERFIL_CONF' AND RESOURCE_TYPE = 'PASSWORD'
+  3  ORDER BY RESOURCE_NAME;
+
+PROFILE              RESOURCE_NAME                  LIMIT
+-------------------- ------------------------------ ------------------------------
+PERFIL_CONF          FAILED_LOGIN_ATTEMPTS          5
+PERFIL_CONF          INACTIVE_ACCOUNT_TIME          120
+PERFIL_CONF          PASSWORD_GRACE_TIME            7
+PERFIL_CONF          PASSWORD_LIFE_TIME             90
+PERFIL_CONF          PASSWORD_LOCK_TIME             ,0416
+PERFIL_CONF          PASSWORD_REUSE_MAX             10
+PERFIL_CONF          PASSWORD_REUSE_TIME            365
+PERFIL_CONF          PASSWORD_ROLLOVER_TIME         DEFAULT
+PERFIL_CONF          PASSWORD_VERIFY_FUNCTION       ORA12C_VERIFY_FUNCTION
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> PROMPT ===== OBS-06. PUBLIC sobre paquetes de salida (esperado: 0 filas) =====
+===== OBS-06. PUBLIC sobre paquetes de salida (esperado: 0 filas) =====
+SQL> SELECT GRANTEE, OWNER, TABLE_NAME, PRIVILEGE FROM DBA_TAB_PRIVS
+  2  WHERE GRANTEE = 'PUBLIC'
+  3    AND TABLE_NAME IN ('UTL_FILE','UTL_HTTP','UTL_SMTP','UTL_TCP');
+
+ninguna fila seleccionada
+
+SQL> 
+SQL> SPOOL OFF
